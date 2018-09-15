@@ -41,7 +41,7 @@ public class Sesion extends JFrame{
         TUser= new JTextField();
         TUser.setBounds(100, 70, 250, 40);
          /*-------------------------------------------------------*/
-        TPass= new JTextField();
+        TPass= new JPasswordField();
         TPass.setBounds(100, 120, 250, 40);
         //ComboBox
         Rol= new JComboBox();
@@ -50,7 +50,8 @@ public class Sesion extends JFrame{
         Rol.addItem("Vendedor");
         Rol.addItem("Comprador");
         Rol.addItem("Observador");
-        Rol.addItem("Usuario");
+        Rol.addItem("Beneficiario");
+        Rol.addItem("Remitente");
          /*-------------------------------------------------------*/
         //frame
         this.setSize(400,300);
@@ -74,7 +75,8 @@ public class Sesion extends JFrame{
          
         }
      private void registroActionPerformed(ActionEvent evt){
-        
+        new Registro().setVisible(true);
+        this.setVisible(false);
      }
      
      //Declaracion de variables
@@ -86,5 +88,5 @@ public class Sesion extends JFrame{
     private JLabel LRol;
     private JComboBox Rol; 
     private JTextField TUser;
-    private JTextField TPass;
+    private JPasswordField TPass;
 }
