@@ -10,8 +10,8 @@ package Paquete;
  * @author byron
  */
 public class Observador extends Usuario{
-    public Observador(int idRemitente, String Nombre, String Apellido, String fechaNac, String Nacionalidad, String Direccion, int Telefono, String correo,String PasswordObservador){
-        super(idRemitente, Nombre, Apellido, fechaNac, Nacionalidad, Direccion, Telefono, correo, "Observador");
+    public Observador(int idRemitente, String Nombre, String Apellido, String fechaNac, String Nacionalidad, String Direccion, String Telefono, String correo,String PasswordObservador,String Password){
+        super(idRemitente, Nombre, Apellido, fechaNac, Nacionalidad, Direccion, Telefono, correo, "Observador",Password);
     }
     
 }

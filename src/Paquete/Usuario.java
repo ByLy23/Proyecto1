@@ -9,9 +9,9 @@ package Paquete;
  * @author byron
  */
 public class Usuario {
-    protected int idRemitente, Telefono;
-    protected String Nombre,Apellido,Nacionalidad,Direccion,Correo;
-    protected String fechaNac;
+    protected int idRemitente;
+    protected String Nombre,Apellido,Nacionalidad,Direccion,Correo,Telefono;
+    protected String fechaNac,Especial,Password;
     
     public Usuario() {
     }
@@ -24,11 +24,11 @@ public class Usuario {
         this.idRemitente = idRemitente;
     }
 
-    public int getTelefono() {
+    public String getTelefono() {
         return Telefono;
     }
 
-    public void setTelefono(int Telefono) {
+    public void setTelefono(String Telefono) {
         this.Telefono = Telefono;
     }
 
@@ -82,8 +82,24 @@ public class Usuario {
     
     public Usuario(Usuario user){
     }
+
+    public String getEspecial() {
+        return Especial;
+    }
+
+    public void setEspecial(String Especial) {
+        this.Especial = Especial;
+    }
+
+    public String getPassword() {
+        return Password;
+    }
+
+    public void setPassword(String Password) {
+        this.Password = Password;
+    }
     
-    public Usuario(int idRemitente, String Nombre, String Apellido, String fechaNac, String Nacionalidad, String Direccion, int Telefono, String Correo,String Especial) {
+    public Usuario(int idRemitente, String Nombre, String Apellido, String fechaNac, String Nacionalidad, String Direccion, String Telefono, String Correo,String Especial,String Password) {
         this.idRemitente = idRemitente;
         this.Nombre = Nombre;
         this.Apellido = Apellido;
@@ -92,6 +108,8 @@ public class Usuario {
         this.Direccion = Direccion;
         this.Telefono = Telefono;
         this.Correo = Correo;
+        this.Especial= Especial;
+        this.Password=Password;
     }
     
 }

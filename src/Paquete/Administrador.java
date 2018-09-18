@@ -10,12 +10,9 @@ package Paquete;
  * @author byron
  */
 public class Administrador extends Usuario{
-    public Administrador(){
-        super(1, "Byron", "Orellana", "12/12/1998", "Guatemala", "Direccion", 51313792,"orellanab80@gmail.com","Admin");
-
-    }
+   
     
-    public Administrador(int idRemitente, String Nombre, String Apellido, String fechaNac, String Nacionalidad, String Direccion, int Telefono, String correo,String PasswordAdmin){
-        super(1, "Byron", "Orellana", "12/12/1998", "Guatemala", "Direccion", 51313792,"orellanab80@gmail.com","Admin");   
+    public Administrador(int idRemitente, String Nombre, String Apellido, String fechaNac, String Nacionalidad, String Direccion, String Telefono, String correo,String PasswordAdmin,String Password){
+      super(idRemitente, Nombre, Apellido, fechaNac, Nacionalidad, Direccion, Telefono, correo, PasswordAdmin, Password);
     }    
 }

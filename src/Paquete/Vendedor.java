@@ -10,8 +10,8 @@ package Paquete;
  * @author byron
  */
 public class Vendedor extends Usuario{
-    public Vendedor(int idRemitente, String Nombre, String Apellido, String fechaNac, String Nacionalidad, String Direccion, int Telefono, String correo,String PasswordVendedor){
-        super(idRemitente, Nombre, Apellido, fechaNac, Nacionalidad, Direccion, Telefono, correo,"Vendedor");
+    public Vendedor(int idRemitente, String Nombre, String Apellido, String fechaNac, String Nacionalidad, String Direccion,String Telefono, String correo,String PasswordVendedor,String Password){
+        super(idRemitente, Nombre, Apellido, fechaNac, Nacionalidad, Direccion, Telefono, correo,"Vendedor",Password);
         
     }
     

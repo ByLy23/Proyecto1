@@ -9,8 +9,10 @@ import javax.swing.*;
  * @author byron
  */
 public class Sesion extends JFrame{
+    private Administrador[] admin= new Administrador[1];
     public Sesion(){
         inicializarComponentes();
+        admin[0]= new Administrador(1, "Byron", "Orellana", "12/12/1998", "Desconocida", "Micasa", "51313792", "orellanab80@gmail.com", "Admin", "123456");
     }
     private void inicializarComponentes(){
         //Labels
@@ -18,7 +20,7 @@ public class Sesion extends JFrame{
          iniSesion.setBounds(135, 20, 120, 20);
          iniSesion.setFont(new Font("SansSerif",Font.PLAIN,16));
          /*-------------------------------------------------------*/
-         Luser= new JLabel("Usuario");
+         Luser= new JLabel("Correo");
          Luser.setBounds(25, 70, 70, 40);
          Luser.setFont(new Font("SansSerif",Font.PLAIN,12));
          /*-------------------------------------------------------*/
@@ -46,7 +48,7 @@ public class Sesion extends JFrame{
         //ComboBox
         Rol= new JComboBox();
         Rol.setBounds(160,220,100,20);
-        Rol.addItem("Admin");
+        Rol.addItem("Administrador");
         Rol.addItem("Vendedor");
         Rol.addItem("Comprador");
         Rol.addItem("Observador");
@@ -72,13 +74,101 @@ public class Sesion extends JFrame{
        
     }
      private void ingresoActionPerformed(ActionEvent evt){
-         
+          if(Rol.getSelectedItem().equals("Administrador")){
+              if (comprobarUsuario(admin, TUser.getText(),1)) {
+                 if (comprobarContrasenya(admin, TPass.getText(), 1)) {
+                    String contra= JOptionPane.showInputDialog("Ingrese contrasenya de Admin: ");
+                     if (contra.equals("Admin")) {
+                         JOptionPane.showMessageDialog(null, "Bienvenido "+admin[0].getNombre()+" "+admin[0].getApellido());
+                         new MainAdmin().setVisible(true);
+                         this.setVisible(false);
+                     }
+                     else{
+                         JOptionPane.showMessageDialog(null, "Contrasenya invalida");
+                     }
+                 }
+                 else{
+                    JOptionPane.showMessageDialog(null, "Contrasenya invalida");
+                 }
+             }
+             else{
+               JOptionPane.showMessageDialog(null, "Correo invalido");
+             }
+         }
+         if(Rol.getSelectedItem().equals("Remitente")){
+             if (comprobarUsuario(Registro.remitente, TUser.getText(),Registro.ContadorRemitente)) {
+                 if (comprobarContrasenya(Registro.remitente, TPass.getText(), Registro.ContadorRemitente)) {
+                   
+                         JOptionPane.showMessageDialog(null, "Bienvenido");
+                         new MainAdmin().setVisible(true);
+                         this.setVisible(false);
+                 }
+                 else{
+                    JOptionPane.showMessageDialog(null, "Contrasenya invalida");
+                 }
+             }
+             else{
+               JOptionPane.showMessageDialog(null, "Correo invalido");
+             }
+         }
+          if(Rol.getSelectedItem().equals("Beneficiario")){
+             if (comprobarUsuario(Registro.beneficiario, TUser.getText(),Registro.ContadorBeneficiario)) {
+                 if (comprobarContrasenya(Registro.beneficiario, TPass.getText(), Registro.ContadorBeneficiario)) {
+                   
+                         JOptionPane.showMessageDialog(null, "Bienvenido");
+                         new MainAdmin().setVisible(true);
+                         this.setVisible(false);
+                 }
+                 else{
+                    JOptionPane.showMessageDialog(null, "Contrasenya invalida");
+                 }
+             }
+             else{
+               JOptionPane.showMessageDialog(null, "Correo invalido");
+             }
+         }
+          /*  if(Rol.getSelectedItem().equals("Administrador")){
+              if (comprobarUsuario(admin, TUser.getText(),1)) {
+                 if (comprobarContrasenya(admin, TPass.getText(), 1)) {
+                    String contra= JOptionPane.showInputDialog("Ingrese contrasenya de Admin: ");
+                     if (contra.equals("Admin")) {
+                         JOptionPane.showMessageDialog(null, "Bienvenido "+admin[0].getNombre()+" "+admin[0].getApellido());
+                         new MainAdmin().setVisible(true);
+                         this.setVisible(false);
+                     }
+                     else{
+                         JOptionPane.showMessageDialog(null, "Contrasenya invalida");
+                     }
+                 }
+                 else{
+                    JOptionPane.showMessageDialog(null, "Contrasenya invalida");
+                 }
+             }
+             else{
+               JOptionPane.showMessageDialog(null, "Correo invalido");
+             }
+         }*/
         }
      private void registroActionPerformed(ActionEvent evt){
         new Registro().setVisible(true);
         this.setVisible(false);
      }
-     
+    public boolean comprobarUsuario(Usuario[] user,String correo, int limite){
+        for (int i = 0; i <limite; i++) {
+            if (correo.equals(user[i].getCorreo())) {
+                return true;
+            }
+        }
+        return false;
+    } 
+    public boolean comprobarContrasenya(Usuario[] user,String contra, int limite){
+        for (int i = 0; i <limite; i++) {
+            if (contra.equals(user[i].getPassword())) {
+                return true;
+            }
+        }
+        return false;
+    } 
      //Declaracion de variables
     private JLabel iniSesion;
     private JLabel Luser;

@@ -10,8 +10,8 @@ package Paquete;
  * @author byron
  */
 public class Beneficiario extends Usuario{
-   public Beneficiario(int idBeneficiario, String Nombre, String Apellido, String fechaNac, String Nacionalidad, String Direccion, int Telefono, String correo){
-       super(idBeneficiario, Nombre, Apellido, fechaNac, Nacionalidad, Direccion, Telefono, correo,"");
+   public Beneficiario(int idBeneficiario, String Nombre, String Apellido, String fechaNac, String Nacionalidad, String Direccion, String Telefono, String correo,String Password){
+       super(idBeneficiario, Nombre, Apellido, fechaNac, Nacionalidad, Direccion, Telefono, correo,"",Password);
    }
 
   

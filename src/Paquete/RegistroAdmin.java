@@ -5,23 +5,28 @@
  */
 package Paquete;
 
+import static Paquete.Registro.ContadorRemitente;
+import static Paquete.Registro.remitente;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
-import javax.swing.*;
+import javax.swing.JButton;
+import javax.swing.JComboBox;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JPasswordField;
+import javax.swing.JTextField;
+import javax.swing.WindowConstants;
 
 /**
  *
  * @author byron
  */
-public class Registro extends JFrame{
-    public static Remitente[] remitente= new Remitente[20];
-    public static Beneficiario[] beneficiario= new Beneficiario[20];
-    public static int ContadorRemitente=0;
-    public static int ContadorBeneficiario=0;
-    public Registro(){
-      inicializarComponentes();
+public class RegistroAdmin extends JFrame{
+    public RegistroAdmin(){
+        inicializarComponentes();
     }
-    public void inicializarComponentes(){
+     public void inicializarComponentes(){
         //Labels
         /*-----------------------------------------*/
         CreacionUser= new JLabel("Registro usuario");
@@ -90,8 +95,9 @@ public class Registro extends JFrame{
        /*-----------------------------------------*/
        CRol= new JComboBox();
        CRol.setBounds(125, 360, 100, 20);
-       CRol.addItem("Remitente");
-       CRol.addItem("Beneficiario");
+       CRol.addItem("Observador");
+       CRol.addItem("Vendedor");
+       CRol.addItem("Comprador");
        /*-----------------------------------------*/
         //Frame
         this.setSize(400,500);
@@ -119,41 +125,14 @@ public class Registro extends JFrame{
        this.add(CRol);
        this.add(TFecha);
     }
-    private void aceptarActionPerformed(ActionEvent evt){
-        if(TNombre.getText().equals("") || TApellido.getText().equals("") || TCorreo.getText().equals("") || TDireccion.getText().equals("") || TTelefono.getText().equals("") || TPassword.getText().equals("") || TFecha.getText().equals("")){
-            System.out.println("Campo vacio");
-        }
-        else{
-            if (CRol.getSelectedItem().equals("Remitente")) {
-                if (comprobarUsuario(remitente, TCorreo.getText(), ContadorRemitente)) {
-                  JOptionPane.showMessageDialog(null, "Usuario repetido");
-                }
-                else{
-               remitente[ContadorRemitente]= new Remitente(ContadorRemitente+1,TNombre.getText(), TApellido.getText(),TFecha.getText() ,"Guatemalteco", TDireccion.getText(), TTelefono.getText(), TCorreo.getText(),TPassword.getText());
-               ContadorRemitente++;
-               JOptionPane.showMessageDialog(null, "Ingresado en la posicion "+ContadorRemitente);
-                }           
-            }   
-            else if(CRol.getSelectedItem().equals("Beneficiario")){
-                if (comprobarUsuario(beneficiario, TCorreo.getText(), ContadorBeneficiario)) {
-                  JOptionPane.showMessageDialog(null, "Usuario repetido");
-                }
-                else{
-                beneficiario[ContadorBeneficiario]= new Beneficiario(ContadorBeneficiario+1,TNombre.getText(), TApellido.getText(),TFecha.getText() ,"Estadounidense", TDireccion.getText(), TTelefono.getText(), TCorreo.getText(),TPassword.getText());
-               ContadorBeneficiario++;
-               JOptionPane.showMessageDialog(null, "Ingresado en la posicion "+ContadorBeneficiario);
-                }  
-                
-            }
-            System.out.println("campo lleno");
-        }
+      private void aceptarActionPerformed(ActionEvent evt){
+       
     }
-    private void cancelarActionPerformed(ActionEvent evt){
+        private void cancelarActionPerformed(ActionEvent evt){
         dispose();
         new Sesion().setVisible(true);
     }
-    
-    public boolean comprobarUsuario(Usuario[] user,String correo, int limite){
+         public boolean comprobarUsuario(Usuario[] user,String correo, int limite){
         for (int i = 0; i <limite; i++) {
             if (correo.equals(user[i].getCorreo())) {
                 return true;
@@ -161,8 +140,7 @@ public class Registro extends JFrame{
         }
         return false;
     }
-    //variables
-    private JLabel CreacionUser;
+      private JLabel CreacionUser;
     private JLabel LNombre;
     private JLabel LApellido;
     private JLabel LCorreo;
