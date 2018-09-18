@@ -4,9 +4,6 @@
  * and open the template in the editor.
  */
 package Paquete;
-
-import static Paquete.Registro.ContadorRemitente;
-import static Paquete.Registro.remitente;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import javax.swing.JButton;
@@ -23,6 +20,12 @@ import javax.swing.WindowConstants;
  * @author byron
  */
 public class RegistroAdmin extends JFrame{
+     public static Vendedor[] vendedor= new Vendedor[20];
+    public static Comprador[] comprador= new Comprador[20];
+    public static Observador[] observador= new Observador[20];
+    public static int ContadorVendedor=0;
+    public static int ContadorComprador=0;
+    public static int ContadorObservador=0;
     public RegistroAdmin(){
         inicializarComponentes();
     }
@@ -126,7 +129,44 @@ public class RegistroAdmin extends JFrame{
        this.add(TFecha);
     }
       private void aceptarActionPerformed(ActionEvent evt){
-       
+          if(TNombre.getText().equals("") || TApellido.getText().equals("") || TCorreo.getText().equals("") || TDireccion.getText().equals("") || TTelefono.getText().equals("") || TPassword.getText().equals("") || TFecha.getText().equals("")){
+           
+        }
+        else{
+            if (CRol.getSelectedItem().equals("Vendedor")) {
+                if (comprobarUsuario(vendedor, TCorreo.getText(), ContadorVendedor)) {
+                  JOptionPane.showMessageDialog(null, "Usuario repetido");
+                }
+                else{
+               vendedor[ContadorVendedor]= new Vendedor(ContadorVendedor+1,TNombre.getText(), TApellido.getText(),TFecha.getText() ,"Guatemalteco", TDireccion.getText(), TTelefono.getText(), TCorreo.getText(),"Vendedor",TPassword.getText());
+               ContadorVendedor++;
+               JOptionPane.showMessageDialog(null, "Ingresado en la posicion "+ContadorVendedor);
+                }           
+            }   
+            else if(CRol.getSelectedItem().equals("Comprador")){
+                if (comprobarUsuario(comprador, TCorreo.getText(), ContadorComprador)) {
+                  JOptionPane.showMessageDialog(null, "Usuario repetido");
+                }
+                else{
+                comprador[ContadorComprador]= new Comprador(ContadorComprador+1,TNombre.getText(), TApellido.getText(),TFecha.getText() ,"Guatemalteco", TDireccion.getText(), TTelefono.getText(), TCorreo.getText(),"Comprador",TPassword.getText());
+               ContadorComprador++;
+               JOptionPane.showMessageDialog(null, "Ingresado en la posicion "+ContadorComprador);
+                }  
+                
+            }
+            else if(CRol.getSelectedItem().equals("Observador")){
+                if (comprobarUsuario(observador, TCorreo.getText(), ContadorObservador)) {
+                  JOptionPane.showMessageDialog(null, "Usuario repetido");
+                }
+                else{
+                observador[ContadorObservador]= new Observador(ContadorObservador+1,TNombre.getText(), TApellido.getText(),TFecha.getText() ,"Guatemalteco", TDireccion.getText(), TTelefono.getText(), TCorreo.getText(),"Observador",TPassword.getText());
+               ContadorObservador++;
+               JOptionPane.showMessageDialog(null, "Ingresado en la posicion "+ContadorObservador);
+                }  
+                
+            }
+        }
+          
     }
         private void cancelarActionPerformed(ActionEvent evt){
         dispose();

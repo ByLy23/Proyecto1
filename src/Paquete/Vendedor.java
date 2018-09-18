@@ -14,5 +14,6 @@ public class Vendedor extends Usuario{
         super(idRemitente, Nombre, Apellido, fechaNac, Nacionalidad, Direccion, Telefono, correo,"Vendedor",Password);
         
     }
-    
+
+
 }
