@@ -130,7 +130,7 @@ public class RegistroAdmin extends JFrame{
     }
       private void aceptarActionPerformed(ActionEvent evt){
           if(TNombre.getText().equals("") || TApellido.getText().equals("") || TCorreo.getText().equals("") || TDireccion.getText().equals("") || TTelefono.getText().equals("") || TPassword.getText().equals("") || TFecha.getText().equals("")){
-           
+           JOptionPane.showMessageDialog(null, "Algun campo esta vacio");
         }
         else{
             if (CRol.getSelectedItem().equals("Vendedor")) {
@@ -170,7 +170,7 @@ public class RegistroAdmin extends JFrame{
     }
         private void cancelarActionPerformed(ActionEvent evt){
         dispose();
-        new Sesion().setVisible(true);
+        new MainAdmin().setVisible(true);
     }
          public boolean comprobarUsuario(Usuario[] user,String correo, int limite){
         for (int i = 0; i <limite; i++) {

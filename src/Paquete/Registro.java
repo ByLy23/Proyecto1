@@ -121,7 +121,7 @@ public class Registro extends JFrame{
     }
     private void aceptarActionPerformed(ActionEvent evt){
         if(TNombre.getText().equals("") || TApellido.getText().equals("") || TCorreo.getText().equals("") || TDireccion.getText().equals("") || TTelefono.getText().equals("") || TPassword.getText().equals("") || TFecha.getText().equals("")){
-            System.out.println("Campo vacio");
+          JOptionPane.showMessageDialog(null, "Algun campo esta vacio");
         }
         else{
             if (CRol.getSelectedItem().equals("Remitente")) {
@@ -132,6 +132,7 @@ public class Registro extends JFrame{
                remitente[ContadorRemitente]= new Remitente(ContadorRemitente+1,TNombre.getText(), TApellido.getText(),TFecha.getText() ,"Guatemalteco", TDireccion.getText(), TTelefono.getText(), TCorreo.getText(),TPassword.getText());
                ContadorRemitente++;
                JOptionPane.showMessageDialog(null, "Ingresado en la posicion "+ContadorRemitente);
+               limpiarTextos();
                 }           
             }   
             else if(CRol.getSelectedItem().equals("Beneficiario")){
@@ -142,17 +143,25 @@ public class Registro extends JFrame{
                 beneficiario[ContadorBeneficiario]= new Beneficiario(ContadorBeneficiario+1,TNombre.getText(), TApellido.getText(),TFecha.getText() ,"Estadounidense", TDireccion.getText(), TTelefono.getText(), TCorreo.getText(),TPassword.getText());
                ContadorBeneficiario++;
                JOptionPane.showMessageDialog(null, "Ingresado en la posicion "+ContadorBeneficiario);
+               limpiarTextos();
                 }  
                 
             }
-            System.out.println("campo lleno");
         }
     }
     private void cancelarActionPerformed(ActionEvent evt){
         dispose();
         new Sesion().setVisible(true);
     }
-    
+    public void limpiarTextos(){
+       TNombre.setText("");
+       TApellido.setText("");
+       TCorreo.setText("");
+       TTelefono.setText("");
+       TDireccion.setText("");
+       TPassword.setText("");
+       TFecha.setText("");
+    }
     public boolean comprobarUsuario(Usuario[] user,String correo, int limite){
         for (int i = 0; i <limite; i++) {
             if (correo.equals(user[i].getCorreo())) {
