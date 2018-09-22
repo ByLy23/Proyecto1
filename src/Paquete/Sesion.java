@@ -2,6 +2,7 @@ package Paquete;
 
 import java.awt.Font;
 import java.awt.event.ActionEvent;
+import java.util.HashSet;
 import javax.swing.*;
 
 /**
@@ -10,9 +11,11 @@ import javax.swing.*;
  */
 public class Sesion extends JFrame{
     private Administrador[] admin= new Administrador[1];
+    public static Fijo[] temp= new Fijo[1];
     public Sesion(){
         inicializarComponentes();
         admin[0]= new Administrador(1, "Byron", "Orellana", "12/12/1998", "Desconocida", "Micasa", "51313792", "orellanab80@gmail.com", "Admin", "123456");
+        temp[0]= new Fijo();
     }
     private void inicializarComponentes(){
         //Labels
@@ -79,6 +82,8 @@ public class Sesion extends JFrame{
                  if (comprobarContrasenya(admin, TPass.getText(), 1)) {
                     String contra= JOptionPane.showInputDialog("Ingrese contrasenya de Admin: ");
                      if (contra.equals("Admin")) {
+                        // Usuario[] user,String correo, int limite,Usuario[] fin
+                         colocarUsuario(admin, TUser.getText(), 1, temp);
                          JOptionPane.showMessageDialog(null, "Bienvenido "+admin[0].getNombre()+" "+admin[0].getApellido());
                          new MainAdmin().setVisible(true);
                          this.setVisible(false);
@@ -98,9 +103,9 @@ public class Sesion extends JFrame{
          if(Rol.getSelectedItem().equals("Remitente")){
              if (comprobarUsuario(Registro.remitente, TUser.getText(),Registro.ContadorRemitente)) {
                  if (comprobarContrasenya(Registro.remitente, TPass.getText(), Registro.ContadorRemitente)) {
-                   
+                    colocarUsuario(Registro.remitente, TUser.getText(), Registro.ContadorRemitente, temp);
                          JOptionPane.showMessageDialog(null, "Bienvenido");
-                         new MainAdmin().setVisible(true);
+                         new MainRemitente().setVisible(true);
                          this.setVisible(false);
                  }
                  else{
@@ -114,7 +119,7 @@ public class Sesion extends JFrame{
           if(Rol.getSelectedItem().equals("Beneficiario")){
              if (comprobarUsuario(Registro.beneficiario, TUser.getText(),Registro.ContadorBeneficiario)) {
                  if (comprobarContrasenya(Registro.beneficiario, TPass.getText(), Registro.ContadorBeneficiario)) {
-                   
+                   colocarUsuario(Registro.beneficiario, TUser.getText(), Registro.ContadorBeneficiario, temp);
                          JOptionPane.showMessageDialog(null, "Bienvenido");
                          new MainAdmin().setVisible(true);
                          this.setVisible(false);
@@ -132,6 +137,7 @@ public class Sesion extends JFrame{
                  if (comprobarContrasenya(RegistroAdmin.vendedor, TPass.getText(), RegistroAdmin.ContadorVendedor)) {
                     String contra= JOptionPane.showInputDialog("Ingrese contrasenya de Vendedor: ");
                      if (contra.equals("Vendedor")) {
+                         colocarUsuario(RegistroAdmin.vendedor, TUser.getText(), RegistroAdmin.ContadorVendedor, temp);
                          JOptionPane.showMessageDialog(null, "Bienvenido "+RegistroAdmin.vendedor[RegistroAdmin.ContadorVendedor-1].getNombre());
                          new MainAdmin().setVisible(true);
                          this.setVisible(false);
@@ -153,6 +159,7 @@ public class Sesion extends JFrame{
                  if (comprobarContrasenya(RegistroAdmin.comprador, TPass.getText(), RegistroAdmin.ContadorComprador)) {
                     String contra= JOptionPane.showInputDialog("Ingrese contrasenya de Comprador: ");
                      if (contra.equals("Comprador")) {
+                         colocarUsuario(RegistroAdmin.comprador, TUser.getText(), RegistroAdmin.ContadorComprador, temp);
                          JOptionPane.showMessageDialog(null, "Bienvenido "+RegistroAdmin.comprador[RegistroAdmin.ContadorComprador-1].getNombre());
                          new MainAdmin().setVisible(true);
                          this.setVisible(false);
@@ -175,6 +182,7 @@ public class Sesion extends JFrame{
                  if (comprobarContrasenya(RegistroAdmin.observador, TPass.getText(),RegistroAdmin.ContadorObservador )) {
                     String contra= JOptionPane.showInputDialog("Ingrese contrasenya de Observador: ");
                      if (contra.equals("Observador")) {
+                         colocarUsuario(RegistroAdmin.observador, TUser.getText(), RegistroAdmin.ContadorObservador, temp);
                          JOptionPane.showMessageDialog(null, "Bienvenido "+RegistroAdmin.observador[RegistroAdmin.ContadorObservador-1].getNombre());
                          new MainAdmin().setVisible(true);
                          this.setVisible(false);
@@ -211,7 +219,27 @@ public class Sesion extends JFrame{
             }
         }
         return false;
-    } 
+    }
+    public void colocarUsuario(Usuario[] user,String correo, int limite,Usuario[] fin){
+        for (int i = 0; i < limite; i++) {
+            if (correo.equals(user[i].getCorreo())) {
+                //idRemitente, Nombre, Apellido, fechaNac, Nacionalidad, Direccion, Telefono, correo, PasswordComprador, Password
+                fin[0].setIdRemitente(user[i].getIdRemitente());
+                fin[0].setNombre(user[i].getNombre());
+                fin[0].setApellido(user[i].getApellido());
+                fin[0].setFechaNac(user[i].getFechaNac());
+                fin[0].setNacionalidad(user[i].getNacionalidad());
+                fin[0].setDireccion(user[i].getDireccion());
+                fin[0].setTelefono(user[i].getTelefono());
+                fin[0].setCorreo(user[i].getCorreo());
+                fin[0].setEspecial(user[i].getEspecial());
+                fin[0].setPassword(user[i].getPassword());
+            }
+            else   {
+                System.out.println("no");
+            }
+        }
+    }
      //Declaracion de variables
     private JLabel iniSesion;
     private JLabel Luser;
