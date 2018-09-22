@@ -19,8 +19,24 @@ public class Venta {
     private String horaVenta;
     private int montoOrigen;
     private int numeroRemesa;
-    private boolean estadoremesa;
-    private boolean remesaactiva;
+    private boolean estadoremesa=false;
+    private boolean remesaactiva=false;
+
+    public boolean isEstadoremesa() {
+        return estadoremesa;
+    }
+
+    public void setEstadoremesa(boolean estadoremesa) {
+        this.estadoremesa = estadoremesa;
+    }
+
+    public boolean isRemesaactiva() {
+        return remesaactiva;
+    }
+
+    public void setRemesaactiva(boolean remesaactiva) {
+        this.remesaactiva = remesaactiva;
+    }
 
     public int getNumeroRemesa() {
         return numeroRemesa;

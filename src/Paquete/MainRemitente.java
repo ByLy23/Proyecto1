@@ -71,7 +71,7 @@ public class MainRemitente extends JFrame{
         comprobarUser();
     }
     private void cancelarRemesa(ActionEvent evt){
-        
+        cancelar();
     }
     private void consultarRemesa(ActionEvent evt){
         
@@ -121,8 +121,6 @@ public class MainRemitente extends JFrame{
             JOptionPane.showMessageDialog(null, "Ingrese cantidad");
         }
         else{
-            
-            System.out.println("si prro");
             generarnumero();
             if (continuar) {
                 venta[Contadorventa]= new Venta(Sesion.temp[0].getIdRemitente(), Registro.beneficiario[i].getIdRemitente(), "Guatemala", generarFecha(), generarHora(), Monto, rnd, false, false);
@@ -149,6 +147,30 @@ public class MainRemitente extends JFrame{
         return horaactual;
     }
  
+    
+    private void cancelar(){
+       int numeroCancelacion= Integer.parseInt(JOptionPane.showInputDialog("Ingrese el numero de la remesa que desea cancelar"));
+       
+        for (int j = 0; j < Contadorventa; j++) {
+            if (numeroCancelacion==venta[j].getNumeroRemesa()) {
+                if (Sesion.temp[0].getIdRemitente()==venta[j].getIdRemitente()) {
+                    if (venta[j].isEstadoremesa()) {
+                        System.out.println("No se puede cancelar debido a que ya se cobro");
+                    }
+                    else{
+                        System.out.println("venta cancelada");
+                        
+                        venta[j].setNumeroRemesa(-1);
+                    }
+                }
+                else{
+                   JOptionPane.showMessageDialog(null, "No puede cancelar esta remesa");
+                }
+            }
+        }
+    }
+    
+    
     private JButton realizarRemesa;
     private JButton consultar;
     private JButton cancelarRemesa;
