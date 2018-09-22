@@ -6,6 +6,8 @@
 package Paquete;
 
 import java.awt.event.ActionEvent;
+import java.util.Calendar;
+import java.util.GregorianCalendar;
 import java.util.InputMismatchException;
 import javax.swing.*;
 
@@ -14,7 +16,7 @@ import javax.swing.*;
  * @author byron
  */
 public class MainRemitente extends JFrame{
-    public static Venta[] venta= new Venta[20];
+    public static Venta[] venta= new Venta[200];
     public static int Contadorventa=0;
     public MainRemitente(){
         inicializarComponentes();
@@ -66,7 +68,7 @@ public class MainRemitente extends JFrame{
         this.add(Ldinero);
     }
     private void realizarRemesaActionPerformed(ActionEvent evt){
-
+        comprobarUser();
     }
     private void cancelarRemesa(ActionEvent evt){
         
@@ -92,7 +94,7 @@ public class MainRemitente extends JFrame{
     }
     private void comprobarUser(){
         for (i = 0; i < Registro.ContadorBeneficiario; i++) {
-             if (usuario.getText().equals(Registro.remitente[i])) {
+             if (usuario.getText().equals(Registro.beneficiario[i].getCorreo())) {
             generarRemesa();
         }
              else{
@@ -115,14 +117,38 @@ public class MainRemitente extends JFrame{
         else if(Monto<0){
             System.out.println("");
         }
+        else if(dinero.getText().equals("")){
+            JOptionPane.showMessageDialog(null, "Ingrese cantidad");
+        }
         else{
+            
             System.out.println("si prro");
             generarnumero();
             if (continuar) {
-                venta[Contadorventa]= new Venta(HEIGHT, ICONIFIED, pais, fechaVenta, horaVenta, Monto, NORMAL, continuar, continuar)
+                venta[Contadorventa]= new Venta(Sesion.temp[0].getIdRemitente(), Registro.beneficiario[i].getIdRemitente(), "Guatemala", generarFecha(), generarHora(), Monto, rnd, false, false);
+                Contadorventa++;
+                System.out.println(venta[Contadorventa-1].getHoraVenta()+" "+venta[Contadorventa-1].getNumeroRemesa());  
+                JOptionPane.showMessageDialog(null, "Venta enviada, el beneficiario: "+Registro.beneficiario[i].getNombre()+" \nPuede recibir la remesa con\nel codigo: "+venta[Contadorventa-1].getNumeroRemesa());
             }
         }
     }
+    private String generarFecha(){
+        Calendar fecha= new GregorianCalendar();
+        int dia= fecha.get(Calendar.DAY_OF_MONTH);
+        int mes= fecha.get(Calendar.MONTH);
+        int anyo= fecha.get(Calendar.YEAR);
+       String actual=dia+"/"+(mes+1)+"/"+anyo;
+       return actual;
+    }
+    private String generarHora(){
+        Calendar fecha= new GregorianCalendar();
+        int hora=fecha.get(Calendar.HOUR_OF_DAY);
+        int minuto= fecha.get(Calendar.MINUTE);
+        int segundo= fecha.get(Calendar.SECOND);
+        String horaactual= hora+":"+minuto+":"+segundo;
+        return horaactual;
+    }
+ 
     private JButton realizarRemesa;
     private JButton consultar;
     private JButton cancelarRemesa;
