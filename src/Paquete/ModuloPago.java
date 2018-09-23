@@ -5,12 +5,10 @@
  */
 package Paquete;
 
-import javax.swing.*;
-
 /**
  *
  * @author byron
  */
-public class Compra{
+public class ModuloPago {
     
 }

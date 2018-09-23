@@ -139,7 +139,7 @@ public class Sesion extends JFrame{
                      if (contra.equals("Vendedor")) {
                          colocarUsuario(RegistroAdmin.vendedor, TUser.getText(), RegistroAdmin.ContadorVendedor, temp);
                          JOptionPane.showMessageDialog(null, "Bienvenido "+RegistroAdmin.vendedor[RegistroAdmin.ContadorVendedor-1].getNombre());
-                         new MainAdmin().setVisible(true);
+                         new ModuloVenta().setVisible(true);
                          this.setVisible(false);
                      }
                      else{

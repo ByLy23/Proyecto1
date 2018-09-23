@@ -17,6 +17,8 @@ import javax.swing.*;
  */
 public class MainRemitente extends JFrame{
     public static Venta[] venta= new Venta[200];
+    public static CancelacionVenta[] cancelacionV= new CancelacionVenta[200];
+    public static int ContadorCancelacionv=0;
     public static int Contadorventa=0;
     public MainRemitente(){
         inicializarComponentes();
@@ -123,11 +125,14 @@ public class MainRemitente extends JFrame{
         else{
             generarnumero();
             if (continuar) {
-                venta[Contadorventa]= new Venta(Sesion.temp[0].getIdRemitente(), Registro.beneficiario[i].getIdRemitente(), "Guatemala", generarFecha(), generarHora(), Monto, rnd, false, false);
+                venta[Contadorventa]= new Venta(Sesion.temp[0].getIdRemitente(), Registro.beneficiario[i].getIdRemitente(), "Guatemala", generarFecha(), generarHora(), Monto, rnd, false, false,obtenerHora());
                 Contadorventa++;
                 System.out.println(venta[Contadorventa-1].getHoraVenta()+" "+venta[Contadorventa-1].getNumeroRemesa());  
                 JOptionPane.showMessageDialog(null, "Venta enviada, el beneficiario: "+Registro.beneficiario[i].getNombre()+" \nPuede recibir la remesa con\nel codigo: "+venta[Contadorventa-1].getNumeroRemesa());
+                dinero.setText("");
+                usuario.setText("");
             }
+            
         }
     }
     private String generarFecha(){
@@ -137,6 +142,11 @@ public class MainRemitente extends JFrame{
         int anyo= fecha.get(Calendar.YEAR);
        String actual=dia+"/"+(mes+1)+"/"+anyo;
        return actual;
+    }
+    private int obtenerHora(){
+        Calendar fecha= new GregorianCalendar();
+        int a= fecha.get(Calendar.HOUR_OF_DAY);
+        return a;
     }
     private String generarHora(){
         Calendar fecha= new GregorianCalendar();
@@ -150,7 +160,7 @@ public class MainRemitente extends JFrame{
     
     private void cancelar(){
        int numeroCancelacion= Integer.parseInt(JOptionPane.showInputDialog("Ingrese el numero de la remesa que desea cancelar"));
-       
+       String motivoCancelacion= JOptionPane.showInputDialog("Detalle el porque de la cancelacion:");
         for (int j = 0; j < Contadorventa; j++) {
             if (numeroCancelacion==venta[j].getNumeroRemesa()) {
                 if (Sesion.temp[0].getIdRemitente()==venta[j].getIdRemitente()) {
@@ -158,8 +168,9 @@ public class MainRemitente extends JFrame{
                         System.out.println("No se puede cancelar debido a que ya se cobro");
                     }
                     else{
-                        System.out.println("venta cancelada");
-                        
+                        cancelacionV[ContadorCancelacionv]= new CancelacionVenta(venta[j].getNumeroRemesa(), generarFecha(), generarHora(), Sesion.temp[0].getCorreo(), motivoCancelacion);
+                        ContadorCancelacionv++;
+                        JOptionPane.showMessageDialog(null, "Venta cancelada");
                         venta[j].setNumeroRemesa(-1);
                     }
                 }

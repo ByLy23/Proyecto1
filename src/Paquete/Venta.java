@@ -21,6 +21,16 @@ public class Venta {
     private int numeroRemesa;
     private boolean estadoremesa=false;
     private boolean remesaactiva=false;
+    private int hora;
+
+    public int getHora() {
+        return hora;
+    }
+
+    public void setHora(int hora) {
+        this.hora = hora;
+    }
+    
 
     public boolean isEstadoremesa() {
         return estadoremesa;
@@ -102,7 +112,7 @@ public Venta(){
         estadoremesa= false;
         remesaactiva=false;
 }
-    public Venta(int idRemitente, int idBeneficiario, String pais, String fechaVenta, String horaVenta, int montoOrigen,int numeroRemesa,boolean estadoremesa,boolean remesaactiva) {
+    public Venta(int idRemitente, int idBeneficiario, String pais, String fechaVenta, String horaVenta, int montoOrigen,int numeroRemesa,boolean estadoremesa,boolean remesaactiva,int hora) {
         this.idRemitente = idRemitente;
         this.idBeneficiario = idBeneficiario;
         this.pais = pais;
@@ -112,6 +122,12 @@ public Venta(){
         this.numeroRemesa= numeroRemesa;
         estadoremesa= false;
         remesaactiva=false;
+        this.hora=hora;
+    }
+
+    @Override
+    public String toString() {
+        return "Venta{" + "id=" + idRemitente + ", idBeneficiario=" + idBeneficiario + ", pais=" + pais + ", fechaVenta=" + fechaVenta + ", horaVenta=" + horaVenta + ", montoOrigen=" + montoOrigen + ", numeroRemesa=" + numeroRemesa + ", estadoremesa=" + estadoremesa + ", remesaactiva=" + remesaactiva + '}';
     }
     
 }
