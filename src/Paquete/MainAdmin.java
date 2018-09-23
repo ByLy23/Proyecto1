@@ -15,29 +15,36 @@ import javax.swing.*;
 public class MainAdmin extends JFrame{
     public MainAdmin(){
         inicializarComponentes();
-        colocarUser();
+       
     }
     public void inicializarComponentes(){
-        prueba= new JLabel("soy un label");
-        prueba.setBounds(200,200, 300, 50);
         //botones
         /*-------------------------------------*/
         BRegistro= new JButton("Registro");
-        BRegistro.setBounds(50,50,100,40);
+        BRegistro.setBounds(50,50,120,40);
         BRegistro.addActionListener(this::registroActionPerformed);
         /*-------------------------------------*/
-        regreso= new JButton("Registro");
-        regreso.setBounds(200,50,100,40);
+        regreso= new JButton("Cerrar Sesion");
+        regreso.setBounds(200,50,120,40);
         regreso.addActionListener(this::regresoActionPerformed);
+        /*------------------------------------*/
+        Mventa= new JButton("Modulo venta");
+        Mventa.setBounds(50,100,120,40);
+        Mventa.addActionListener(this::moduloVenta);
+        /*-------------------------------------*/
+        MPago= new JButton("Modulo Pago");
+        MPago.setBounds(200,100,120,40);
+        MPago.addActionListener(this::moduloPago);
         //frame
-        this.setSize(500,500);
+        this.setSize(400,250);
         this.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         this.setLocationRelativeTo(null);
         this.setLayout(null);
         this.setTitle("Admin - Sistema de Remesas");
         this.add(BRegistro);
-        this.add(prueba);
         this.add(regreso);
+        this.add(Mventa);
+        this.add(MPago);
     }
     private void registroActionPerformed(ActionEvent evt){
         new RegistroAdmin().setVisible(true);
@@ -47,10 +54,16 @@ public class MainAdmin extends JFrame{
         dispose();
         new Sesion().setVisible(true);
     }
-    public void colocarUser(){
-        prueba.setText(Sesion.temp[0].getNombre()+" "+" "+Sesion.temp[0].getDireccion());
+    private void moduloVenta(ActionEvent evt){
+        new ModuloVenta().setVisible(true);
+        this.setVisible(false);
     }
+     private void moduloPago(ActionEvent evt){
+        
+    }
+    
     private JButton BRegistro;
-    private JLabel prueba;
     private JButton regreso;
+    private JButton Mventa;
+    private JButton MPago;
 }

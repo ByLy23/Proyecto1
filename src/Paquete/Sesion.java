@@ -14,7 +14,7 @@ public class Sesion extends JFrame{
     public static Fijo[] temp= new Fijo[1];
     public Sesion(){
         inicializarComponentes();
-        admin[0]= new Administrador(1, "Byron", "Orellana", "12/12/1998", "Desconocida", "Micasa", "51313792", "orellanab80@gmail.com", "Admin", "123456");
+        admin[0]= new Administrador(1, "Byron", "Orellana", "12/12/1998", "Desconocida", "Micasa", "51313792", "byron", "Admin", "123");
         temp[0]= new Fijo();
     }
     private void inicializarComponentes(){
