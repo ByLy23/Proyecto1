@@ -184,7 +184,7 @@ public class Sesion extends JFrame{
                      if (contra.equals("Observador")) {
                          colocarUsuario(RegistroAdmin.observador, TUser.getText(), RegistroAdmin.ContadorObservador, temp);
                          JOptionPane.showMessageDialog(null, "Bienvenido "+RegistroAdmin.observador[RegistroAdmin.ContadorObservador-1].getNombre());
-                         //new moduloObservador().setVisible(true);
+                         new MainObservador().setVisible(true);
                          this.setVisible(false);
                      }
                      else{

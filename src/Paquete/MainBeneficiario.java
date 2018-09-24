@@ -20,6 +20,8 @@ import javax.swing.WindowConstants;
 public class MainBeneficiario extends JFrame{
     public static Compra[] compra= new Compra[200];
     public static int ContadorCompra=0;
+    public static CancelacionPago[] CancelacionP= new CancelacionPago[200];
+    public static int ContadorCancelacion=0;
     public MainBeneficiario(){
         inicializarComponentes();
     }
@@ -78,7 +80,29 @@ public class MainBeneficiario extends JFrame{
         }
     }
     private void CancelarRemesa(ActionEvent evt){
-        
+        cancelar();
+    }
+     private void cancelar(){
+       int numeroCancelacion= Integer.parseInt(JOptionPane.showInputDialog("Ingrese el numero de la remesa que desea cancelar"));
+       String motivoCancelacion= JOptionPane.showInputDialog("Detalle el porque de la cancelacion:");
+        for (int j = 0; j < MainRemitente.Contadorventa; j++) {
+            if (numeroCancelacion==MainRemitente.venta[j].getNumeroRemesa()) {
+                if (Sesion.temp[0].getIdRemitente()==MainRemitente.venta[j].getIdBeneficiario()) {
+                    if (MainRemitente.venta[j].isEstadoremesa()) {
+                        System.out.println("No se puede cancelar debido a que ya se cobro");
+                    }
+                    else{
+                        CancelacionP[ContadorCancelacion]= new CancelacionPago(MainRemitente.venta[j].getNumeroRemesa(), generarFecha(), generarHora(), Sesion.temp[0].getCorreo(), motivoCancelacion);
+                        ContadorCancelacion++;
+                        JOptionPane.showMessageDialog(null, "Venta cancelada");
+                        MainRemitente.venta[j].setRemesacobro(false);
+                    }
+                }
+                else{
+                   JOptionPane.showMessageDialog(null, "No puede cancelar esta remesa");
+                }
+            }
+        }
     }
     private double setMontoDestino(int montoOrigen){
         double montodestino= montoOrigen*(tipoCambio-gananciaUS);

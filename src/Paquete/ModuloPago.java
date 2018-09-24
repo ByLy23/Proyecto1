@@ -48,6 +48,7 @@ public class ModuloPago extends JFrame{
          if (numeroRemesa==MainRemitente.venta[i].getNumeroRemesa() && MainRemitente.venta[i].isRemesacobro()) {
              MainRemitente.venta[i].setEstadoremesa(true);
              MainBeneficiario.compra[i].setCorreoUsuario(Sesion.temp[0].getCorreo());
+             JOptionPane.showMessageDialog(null, "Transaccion Finalizada");
          }
      }
  }

@@ -138,7 +138,10 @@ public Venta(){
 
     @Override
     public String toString() {
-        return "Venta{" + "id=" + idRemitente + ", idBeneficiario=" + idBeneficiario + ", pais=" + pais + ", fechaVenta=" + fechaVenta + ", horaVenta=" + horaVenta + ", montoOrigen=" + montoOrigen + ", numeroRemesa=" + numeroRemesa + ", estadoremesa=" + estadoremesa + ", remesaactiva=" + remesaactiva + '}';
+        if (numeroRemesa>0) {
+        return "Venta{" + "id=" + idRemitente + ", idBeneficiario=" + idBeneficiario + ", pais=" + pais + ", fechaVenta=" + fechaVenta + ", horaVenta=" + horaVenta + ", montoOrigen=" + montoOrigen + ", numeroRemesa=" + numeroRemesa + ", estadoremesa=" + estadoremesa + ", remesaactiva=" + remesaactiva + '}';      
+        }
+        else return "";
     }
     
 }

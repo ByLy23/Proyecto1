@@ -66,5 +66,17 @@ public class Compra{
         this.montoDestino = montoDestino;
         this.tipoCambio=tipoCambio;
     }
+    public Compra() {
+        fechaPago="";
+        horaPago="";
+        correoUsuario="";
+        montoDestino=0;
+        tipoCambio=0;
+    }
+
+    @Override
+    public String toString() {
+        return "Compra{" + "fechaPago=" + fechaPago + ", horaPago=" + horaPago + ", correoUsuario=" + correoUsuario + ", tipoCambio=" + tipoCambio + ", montoDestino=" + montoDestino + '}';
+    }
     
 }

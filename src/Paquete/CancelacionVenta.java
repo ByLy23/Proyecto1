@@ -63,5 +63,17 @@ public class CancelacionVenta {
         this.correoUsuario = correoUsuario;
         this.motivoCancelacion = motivoCancelacion;
     }
+     public CancelacionVenta() {
+        numeroRemesa=0;
+        fechaCancelacion="";
+        horaCancelacion="";
+      correoUsuario="";
+         motivoCancelacion="";
+    }
+
+    @Override
+    public String toString() {
+        return "CancelacionVenta{" + "numeroRemesa=" + numeroRemesa + ", fechaCancelacion=" + fechaCancelacion + ", horaCancelacion=" + horaCancelacion + ", correoUsuario=" + correoUsuario + ", motivoCancelacion=" + motivoCancelacion + '}';
+    }
     
 }
