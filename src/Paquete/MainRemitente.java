@@ -61,7 +61,7 @@ public class MainRemitente extends JFrame{
         this.setLayout(null);
         this.setTitle(Sesion.temp[0].getNombre()+" - Sistema de Remesas");
         this.add(realizarRemesa);
-        this.add(consultar);
+        //this.add(consultar);
         this.add(usuario);
         this.add(cancelarRemesa);
         this.add(cerrarSesion);
@@ -98,11 +98,9 @@ public class MainRemitente extends JFrame{
         for (i = 0; i < Registro.ContadorBeneficiario; i++) {
              if (usuario.getText().equals(Registro.beneficiario[i].getCorreo())) {
             generarRemesa();
-        }
-             else{
-                 JOptionPane.showMessageDialog(null, "Usuario inexistente");
              }
         }
+        JOptionPane.showMessageDialog(null, "Usuario inexistente");
        
     }
     private void generarRemesa(){
@@ -125,7 +123,7 @@ public class MainRemitente extends JFrame{
         else{
             generarnumero();
             if (continuar) {
-                venta[Contadorventa]= new Venta(Sesion.temp[0].getIdRemitente(), Registro.beneficiario[i].getIdRemitente(), "Guatemala", generarFecha(), generarHora(), Monto, rnd, false, false,obtenerHora());
+                venta[Contadorventa]= new Venta(Sesion.temp[0].getIdRemitente(), Registro.beneficiario[i].getIdRemitente(), "Guatemala", generarFecha(), generarHora(), Monto, rnd, false, false,obtenerHora(),false);
                 Contadorventa++;
                 System.out.println(venta[Contadorventa-1].getHoraVenta()+" "+venta[Contadorventa-1].getNumeroRemesa());  
                 JOptionPane.showMessageDialog(null, "Venta enviada, el beneficiario: "+Registro.beneficiario[i].getNombre()+" \nPuede recibir la remesa con\nel codigo: "+venta[Contadorventa-1].getNumeroRemesa());

@@ -35,6 +35,10 @@ private void inicializarComponentes(){
     cerrarSesion= new JButton("Cerrar sesion");
     cerrarSesion.setBounds(180,20,120,40);
     cerrarSesion.addActionListener(this::cerrarSesion);  
+    /*--------------------------*/
+    regresar= new JButton("Regresar");
+    regresar.setBounds(180,110,120,40);
+    regresar.addActionListener(this::regresar);
     //frame
     this.setSize(400,500);
         this.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
@@ -48,7 +52,7 @@ private void inicializarComponentes(){
             this.add(beneficiario);
         }
         else{
-            System.out.println("loba");
+          this.add(regresar);
         }
     }
 private void remitenteAction(ActionEvent evt){
@@ -56,6 +60,10 @@ private void remitenteAction(ActionEvent evt){
 }
 private void beneficiarioEvent(ActionEvent evt){
     
+}
+private void regresar(ActionEvent evt){
+    dispose();
+    new MainAdmin().setVisible(true);
 }
 private void venta(ActionEvent evt){
     autorizarVenta();
@@ -65,7 +73,12 @@ private void cerrarSesion(ActionEvent evt){
     new Sesion().setVisible(true);
 }
 private void autorizarVenta(){
-    int numeroVenta= Integer.parseInt(JOptionPane.showInputDialog("Ingrese numero venta a autorizar"));
+    int numeroVenta=0;
+    try{
+    numeroVenta= Integer.parseInt(JOptionPane.showInputDialog("Ingrese numero venta a autorizar"));
+    }catch(NumberFormatException e){
+        System.out.println("e");
+    }
     for (int i = 0; i < MainRemitente.Contadorventa; i++) {
         if (numeroVenta==MainRemitente.venta[i].getNumeroRemesa() && !(MainRemitente.venta[i].isRemesaactiva())) {
             MainRemitente.venta[i].setRemesaactiva(true);
@@ -81,5 +94,5 @@ private JButton venta;
 private JButton remitente;
 private JButton beneficiario;
 private JButton cerrarSesion;
-
+private JButton regresar;
 }

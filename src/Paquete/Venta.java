@@ -22,6 +22,16 @@ public class Venta {
     private boolean estadoremesa=false;
     private boolean remesaactiva=false;
     private int hora;
+    private boolean remesacobro=false;
+
+    public boolean isRemesacobro() {
+        return remesacobro;
+    }
+
+    public void setRemesacobro(boolean remesacobro) {
+        this.remesacobro = remesacobro;
+    }
+    
 
     public int getHora() {
         return hora;
@@ -112,7 +122,7 @@ public Venta(){
         estadoremesa= false;
         remesaactiva=false;
 }
-    public Venta(int idRemitente, int idBeneficiario, String pais, String fechaVenta, String horaVenta, int montoOrigen,int numeroRemesa,boolean estadoremesa,boolean remesaactiva,int hora) {
+    public Venta(int idRemitente, int idBeneficiario, String pais, String fechaVenta, String horaVenta, int montoOrigen,int numeroRemesa,boolean estadoremesa,boolean remesaactiva,int hora,boolean remesacobro) {
         this.idRemitente = idRemitente;
         this.idBeneficiario = idBeneficiario;
         this.pais = pais;
@@ -123,6 +133,7 @@ public Venta(){
         estadoremesa= false;
         remesaactiva=false;
         this.hora=hora;
+        this.remesacobro=remesacobro;
     }
 
     @Override

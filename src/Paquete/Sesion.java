@@ -121,7 +121,7 @@ public class Sesion extends JFrame{
                  if (comprobarContrasenya(Registro.beneficiario, TPass.getText(), Registro.ContadorBeneficiario)) {
                    colocarUsuario(Registro.beneficiario, TUser.getText(), Registro.ContadorBeneficiario, temp);
                          JOptionPane.showMessageDialog(null, "Bienvenido");
-                         new MainAdmin().setVisible(true);
+                         new MainBeneficiario().setVisible(true);
                          this.setVisible(false);
                  }
                  else{
@@ -161,7 +161,7 @@ public class Sesion extends JFrame{
                      if (contra.equals("Comprador")) {
                          colocarUsuario(RegistroAdmin.comprador, TUser.getText(), RegistroAdmin.ContadorComprador, temp);
                          JOptionPane.showMessageDialog(null, "Bienvenido "+RegistroAdmin.comprador[RegistroAdmin.ContadorComprador-1].getNombre());
-                         new MainAdmin().setVisible(true);
+                         new ModuloPago().setVisible(true);
                          this.setVisible(false);
                      }
                      else{
@@ -184,7 +184,7 @@ public class Sesion extends JFrame{
                      if (contra.equals("Observador")) {
                          colocarUsuario(RegistroAdmin.observador, TUser.getText(), RegistroAdmin.ContadorObservador, temp);
                          JOptionPane.showMessageDialog(null, "Bienvenido "+RegistroAdmin.observador[RegistroAdmin.ContadorObservador-1].getNombre());
-                         new MainAdmin().setVisible(true);
+                         //new moduloObservador().setVisible(true);
                          this.setVisible(false);
                      }
                      else{
