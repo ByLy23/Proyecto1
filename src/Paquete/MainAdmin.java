@@ -59,7 +59,8 @@ public class MainAdmin extends JFrame{
         this.setVisible(false);
     }
      private void moduloPago(ActionEvent evt){
-        
+        new ModuloPago().setVisible(true);
+        this.setVisible(false);
     }
     
     private JButton BRegistro;

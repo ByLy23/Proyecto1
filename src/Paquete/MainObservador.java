@@ -9,6 +9,7 @@ import java.awt.Color;
 import java.awt.event.ActionEvent;
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
@@ -20,7 +21,8 @@ import javax.swing.WindowConstants;
  * @author byron
  */
 public class MainObservador extends JFrame{
-public static int montototal=0;
+public static int montototaldolar=0;
+public static double montototalQuetzales=0;
 public MainObservador(){
     inicializarComponentes();
 }
@@ -79,6 +81,9 @@ private void ventas(ActionEvent evt){
         label[i]= new Label(50,50*i,300,40);
         label[i].setNombre(MainRemitente.venta[i].toString());
         panel.add(label[i]);
+        montototaldolar=montototaldolar+MainRemitente.venta[i].getMontoOrigen();
+        montototalQuetzales=montototalQuetzales+MainBeneficiario.compra[i].getMontoDestino();
+        JOptionPane.showMessageDialog(null, "Monto total generado en $: "+montototaldolar+"\n"+"Monto total generado en Q: "+montototalQuetzales);
     }
     
 }

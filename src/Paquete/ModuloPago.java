@@ -27,6 +27,10 @@ public class ModuloPago extends JFrame{
      cerrarSesion= new JButton("Cerrar sesion");
      cerrarSesion.setBounds(180,50,120,40);
      cerrarSesion.addActionListener(this::cerrarSesion);
+     
+     regresar= new JButton("regresar");
+     regresar.setBounds(180,50,120,40);
+     regresar.addActionListener(this::cerrarSesion);
      //frame
     this.setSize(400,500);
         this.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
@@ -34,7 +38,12 @@ public class ModuloPago extends JFrame{
         this.setLayout(null);
         this.setTitle(Sesion.temp[0].getNombre()+" - Sistema de Remesas");
         this.add(pago);
+        if (Sesion.temp[0].getEspecial().equals("Admin")) {
+         this.add(regresar);
+     }
+        else{ 
         this.add(cerrarSesion);
+        }
  }
  private void PagarRemesa(ActionEvent evt){
      int numeroRemesa=0;
@@ -60,4 +69,5 @@ public class ModuloPago extends JFrame{
    
 private JButton pago;
 private JButton cerrarSesion;   
+private JButton regresar;
 }
